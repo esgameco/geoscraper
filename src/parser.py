@@ -20,11 +20,13 @@ class Parser:
 
         return output
     
-    def parse_domains(self, page: BeautifulSoup) -> any:
-        items = page.find('body').get_text().split('\n')[3:]
+    def parse_text(self, page: BeautifulSoup) -> any:
+        items = page.find('body').get_text().split('\n')
         items = [x for x in items if x]
         output = []
         for i in items:
-            output.append(i.split(' - '))
+            r = i.split(' - ')
+            if len(r) > 1:
+                output.append(r)
 
         return output
